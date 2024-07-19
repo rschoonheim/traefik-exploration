@@ -1,0 +1,29 @@
+# Entry-points
+# -------------------------------------------------------------------------------------
+# Een entry-point is een poort waarop Traefik luistert voor inkomend verkeer. Een
+# entry-point specificeert niet het protocol dat wordt gebruikt, maar alleen het poort
+# nummer.
+#
+entryPoints:
+  web:
+    address: :80
+  websecure:
+    address: :443
+
+# Providers
+# -------------------------------------------------------------------------------------
+# Een provider is een mechanisme waarmee Traefik dynamisch configuraties kan ophalen.
+#
+providers:
+  file:
+    directory: /dynamic-configurations
+    watch: true
+
+# ServerTransport
+# -------------------------------------------------------------------------------------
+# ServerTransport is een globale configuratie waarmee gedrag tussen Traefik en backends
+# kan worden geconfigureerd.
+#
+serversTransport:
+
+
