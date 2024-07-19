@@ -7,7 +7,7 @@ default_ca = CA_default
 
 [ CA_default ]
 # Directory and file locations.
-dir               = /media/romano/Programming/projects/docker-grpc-who-am-i-service/.tls/intermediate
+dir               = /app/.tls/intermediate
 certs             = $dir/certs
 crl_dir           = $dir/crl
 new_certs_dir     = $dir/newcerts
@@ -77,15 +77,16 @@ stateOrProvinceName             = State or Province Name
 localityName                    = Locality Name
 0.organizationName              = Organization Name
 organizationalUnitName          = Organizational Unit Name
-emailAddress                    = Email Address
+#emailAddress                    = Email Address
 
 # Optionally, specify some defaults.
-countryName_default             = XX
-stateOrProvinceName_default     = MyState
-localityName_default            =
-0.organizationName_default      = MyOrg
-organizationalUnitName_default  =
-emailAddress_default            =
+commonName_default              = Example Intermediate CA
+countryName_default             = NL
+stateOrProvinceName_default     = Utrecht
+localityName_default            = Utrecht
+0.organizationName_default      = Rschoonheim
+organizationalUnitName_default  = IT
+#emailAddress_default            =
 
 [ v3_ca ]
 # Extensions for a typical CA (`man x509v3_config`).
@@ -124,9 +125,7 @@ authorityInfoAccess = OCSP;URI:http://ocsp2.example.com
 subjectAltName = @alt_names
 
 [ alt_names ]
-DNS.1 = server
-DNS.2 = client
-#DNS.3 = m.example.com
+DNS.1 = "Example Intermediate CA"
 
 [ crl_ext ]
 # Extension for CRLs (`man x509v3_config`).

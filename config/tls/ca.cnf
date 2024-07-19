@@ -7,7 +7,7 @@ default_ca = CA_default
 
 [ CA_default ]
 # Directory and file locations.
-dir               = /media/romano/Programming/projects/docker-grpc-who-am-i-service/.tls
+dir               = /app/.tls
 certs             = $dir/certs
 crl_dir           = $dir/crl
 new_certs_dir     = $dir/newcerts
@@ -73,7 +73,7 @@ commonName                      = Common Name
 countryName                     = Country Name (2 letter code)
 stateOrProvinceName             = State or Province Name
 localityName                    = Locality Name
-0.organizationName              = Organization Name
+0.organizationName_default      = Rschoonheim
 organizationalUnitName          = Organizational Unit Name
 emailAddress                    = Email Address
 
