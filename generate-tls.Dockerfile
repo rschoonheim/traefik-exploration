@@ -6,4 +6,4 @@ WORKDIR /app
 #
 RUN apk add --no-cache openssl bash
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/bash" , "-c", "./scripts/tls.sh"]

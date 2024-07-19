@@ -1,0 +1,14 @@
+http:
+  routers:
+    localhost:
+      rule: "Host(`localhost`)"
+      service: localhost
+      tls: {}
+      entryPoints:
+        - web
+        - websecure
+  services:
+    localhost:
+      loadBalancer:
+        servers:
+          - url: "http://nginx:80"

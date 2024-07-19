@@ -19,10 +19,23 @@ providers:
     directory: /dynamic-configurations
     watch: true
 
+# Log
+# -------------------------------------------------------------------------------------
+#
+log:
+  level: DEBUG
+
+# AccessLog
+# -------------------------------------------------------------------------------------
+#
+accessLog:
+  format: json
+
 # ServerTransport
 # -------------------------------------------------------------------------------------
 # ServerTransport is een globale configuratie waarmee gedrag tussen Traefik en backends
 # kan worden geconfigureerd.
 #
-serversTransport:
-
+#serversTransport:
+#  rootCAs:
+#    - /tls/intermediate/certs/ca-chain.cert.pem

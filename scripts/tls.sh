@@ -90,3 +90,29 @@ chmod 444 .tls/intermediate/certs/intermediate.cert.pem
 # Verify the intermediate CA certificate.
 #
 openssl verify -CAfile .tls/certs/ca.cert.pem .tls/intermediate/certs/intermediate.cert.pem
+
+# Generate the certificate chain file.
+#
+cat .tls/intermediate/certs/intermediate.cert.pem .tls/certs/ca.cert.pem > /app/.tls/intermediate/certs/ca-chain.cert.pem
+
+
+# Generate a TLS certificate for a website under the domain "localhost"
+
+# Generate website key
+openssl genrsa -out /app/.tls/intermediate/private/website.key.pem 2048
+
+# Generate website signing request
+openssl req -config /app/.tls/intermediate/openssl.cnf \
+    -key /app/.tls/intermediate/private/website.key.pem \
+    -new -sha256 -out /app/.tls/intermediate/csr/website.csr.pem \
+    -subj "/C=NL/ST=Utrecht/L=Utrecht/O=Rschoonheim/CN=localhost"
+
+# Generate website certificate
+openssl ca -config /app/.tls/intermediate/openssl.cnf -extensions server_cert \
+    -days 375 -notext -md sha256 -in /app/.tls/intermediate/csr/website.csr.pem \
+    -out /app/.tls/intermediate/certs/website.cert.pem
+chmod 444 /app/.tls/intermediate/certs/website.cert.pem
+
+# Verify website certificate
+openssl verify -CAfile /app/.tls/intermediate/certs/ca-chain.cert.pem \
+    /app/.tls/intermediate/certs/website.cert.pem

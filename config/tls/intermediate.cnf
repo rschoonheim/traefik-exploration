@@ -62,12 +62,16 @@ emailAddress            = optional
 default_bits        = 2048
 distinguished_name  = req_distinguished_name
 string_mask         = utf8only
+req_extensions = v3_req # Allow extensions in CSRs
 
 # SHA-1 is deprecated, so use SHA-2 instead.
 default_md          = sha256
 
 # Extension to add when the -x509 option is used.
 x509_extensions     = v3_ca
+
+[ v3_req ]
+subjectAltName = @alt_names
 
 [ req_distinguished_name ]
 # See <https://en.wikipedia.org/wiki/Certificate_signing_request>.
@@ -126,6 +130,7 @@ subjectAltName = @alt_names
 
 [ alt_names ]
 DNS.1 = "Example Intermediate CA"
+DNS.2 = localhost
 
 [ crl_ext ]
 # Extension for CRLs (`man x509v3_config`).

@@ -1,0 +1,9 @@
+tls:
+  stores:
+    default:
+      defaultCertificate:
+        certFile: /tls/intermediate/certs/website.cert.pem
+        keyFile: /tls/intermediate/private/website.key.pem
+  certificates:
+    - certFile: /tls/intermediate/certs/website.cert.pem
+      keyFile: /tls/intermediate/private/website.key.pem
