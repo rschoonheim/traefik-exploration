@@ -31,11 +31,10 @@ log:
 accessLog:
   format: json
 
-# ServerTransport
+# API
 # -------------------------------------------------------------------------------------
-# ServerTransport is een globale configuratie waarmee gedrag tussen Traefik en backends
-# kan worden geconfigureerd.
 #
-#serversTransport:
-#  rootCAs:
-#    - /tls/intermediate/certs/ca-chain.cert.pem
+api:
+  insecure: true
+  dashboard: true
+  debug: true

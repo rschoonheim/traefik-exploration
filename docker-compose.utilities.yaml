@@ -1,0 +1,12 @@
+services:
+
+  # Generate TLS certificates
+  # ------------------------------
+  #
+  generate-tls:
+    user: 1000:1000
+    build:
+      context: .
+      dockerfile: generate-tls.Dockerfile
+    volumes:
+      - ./:/app

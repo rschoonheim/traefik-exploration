@@ -4,9 +4,10 @@
 # were not generated.
 #
 if [ ! -d .tls ]; then
-  docker compose run --rm generate-tls ./scripts/tls.sh > /dev/null
+  echo "Certificates not found. Please run `make certs` first."
+  exit 1
 fi
 
 # Start the traefik service.
 #
-docker compose up -d traefik
+docker compose up -d

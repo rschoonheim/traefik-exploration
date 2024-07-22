@@ -4,18 +4,6 @@ networks:
     attachable: true
 
 services:
-
-  # Generate TLS certificates
-  # ------------------------------
-  #
-#  generate-tls:
-#    user: 1000:1000
-#    build:
-#      context: .
-#      dockerfile: generate-tls.Dockerfile
-#    volumes:
-#      - ./:/app
-
   # Traefik
   # ------------------------------
   #
@@ -26,8 +14,11 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "8080:8080"
     networks:
       - traefikNet
+    depends_on:
+      - nginx
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - .tls:/tls
@@ -40,5 +31,11 @@ services:
   nginx:
     image: nginx:latest
     container_name: nginx
+    expose:
+      - "80"
+      - "443"
     networks:
       - traefikNet
+    volumes:
+      - ./config/nginx/etc/nginx/conf.d:/etc/nginx/conf.d
+      - .tls:/tls

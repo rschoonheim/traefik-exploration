@@ -1,7 +1,5 @@
 #!/bin/bash
 
-rm -rf .tls
-
 # Prepare the `.tls` directory
 #
 if [ ! -d .tls ]; then
@@ -95,8 +93,6 @@ openssl verify -CAfile .tls/certs/ca.cert.pem .tls/intermediate/certs/intermedia
 #
 cat .tls/intermediate/certs/intermediate.cert.pem .tls/certs/ca.cert.pem > /app/.tls/intermediate/certs/ca-chain.cert.pem
 
-
-# Generate a TLS certificate for a website under the domain "localhost"
 
 # Generate website key
 openssl genrsa -out /app/.tls/intermediate/private/website.key.pem 2048

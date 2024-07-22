@@ -3,12 +3,18 @@ http:
     localhost:
       rule: "Host(`localhost`)"
       service: localhost
-      tls: {}
+      tls: { }
       entryPoints:
-        - web
         - websecure
+      priority: 1
+  serversTransports:
+    nginxTransport:
+      serverName: "localhost"
+      rootCAs:
+        - /tls/intermediate/certs/intermediate.cert.pem
   services:
     localhost:
       loadBalancer:
+        serversTransport: "nginxTransport"
         servers:
-          - url: "http://nginx:80"
+          - url: "https://nginx:443"
